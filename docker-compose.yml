@@ -4,8 +4,8 @@ services:
     image: adguard/adguardhome
     container_name: Adguard-Home
     restart: always
-    networks:
-      - internal
+    #networks:
+    #  - internal
     dns:
       - 1.1.1.1
       - 8.8.8.8
