@@ -3,4 +3,5 @@
 *  grafana : docker pull grafana/grafana:latest
 *  influxdb : docker pull influxdb:1.8.10
 *  prometheus : 
+*  adguard : docker pull adguard/adguardhome:latest
 *  What ports are going to be used
