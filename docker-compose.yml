@@ -1,22 +1,28 @@
-version: '3'
 services:
-  adguard-home:
-    image: adguard/adguardhome
-    container_name: Adguard-Home
-    restart: always
-    #networks:
-    #  - internal
-    dns:
-      - 1.1.1.1
-      - 8.8.8.8
+  #containers we want to deploy in our application
+  grafana:
+    image: grafana/grafana:latest
     ports:
-      - '84:80/tcp' #webport
-      - '53:53/udp' #DNS
-      - '53:53/tcp' #DNS
-      - '853:853/tcp'
-      - '3333:3000/tcp'
+      - 3000:3000
+
+  influxdb:
+    image: influxdb:1.8.10
+    ports:
+      - 8086:8086
     volumes:
-      - './opt:/opt/adguardhome/work'
-      - './confdir:/opt/adguardhome/conf'
-volumes:
- adguardvolume:
+      - ./influxdb/influxdbvolume:/var/lib/influxdb2
+      #add config to influxdb
+      #
+      #
+  adguard:
+    image: adguard/adguardhome:latest
+    ports:
+      - 53:53 #DNS
+      - 67:67
+      - 80:80 #webport
+      - 853:853
+      - 784:784
+      - 5443:5443
+    volumes:
+      - ./adguard/workdir:/opt/adguardhome/work
+      - ./adguard/confdif:/opt/adguardhome/conf
