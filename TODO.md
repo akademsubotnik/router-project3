@@ -15,5 +15,5 @@
           -p 853:853/tcp: add if you are going to run AdGuard Home as a DNS-over-TLS server.
           -p 784:784/udp -p 853:853/udp -p 8853:8853/udp: add if you are going to run AdGuard Home as a DNS-over-QUIC server. You may only leave one or two of these.
           -p 5443:5443/tcp -p 5443:5443/udp: add if you are going to run AdGuard Home as a DNSCrypt server.
-*      collectd :
+*      collectd : 25826/udp
 *      
