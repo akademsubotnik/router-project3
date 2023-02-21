@@ -5,3 +5,5 @@
 *  prometheus : 
 *  adguard : docker pull adguard/adguardhome:latest
 *  What ports are going to be used
+*      grafana : 3000
+*      
