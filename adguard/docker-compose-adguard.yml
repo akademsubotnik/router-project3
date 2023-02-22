@@ -1,15 +1,13 @@
-  #containers we want to deploy in our application
-  grafana:
-    image: grafana/grafana:latest
+services:
+  adguard:
+    image: adguard/adguardhome:latest
     ports:
-      - 3000:3000
-
-  influxdb:
-    image: influxdb:1.8.10
-    ports:
-      - 8086:8086
+      - 53:53 #DNS
+      - 67:67 #DHCP server
+      - 80:80 #webport
+      - 853:853 #DNS over TLS
+      - 784:784 #DNS over QUIC
+      - 5443:5443 # DNSCrypt
     volumes:
-      - ./influxdb/influxdbvolume:/var/lib/influxdb2
-      #add config to influxdb
-      #
-      #
+      - ./adguard/workdir:/opt/adguardhome/work
+      - ./adguard/confdif:/opt/adguardhome/conf
