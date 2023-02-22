@@ -1,10 +1,10 @@
-A project to have different dockerized applications running on OpenWRT router
+A project to have different dockerized applications running on OpenWRT router/Raspi 3B
 
 ROUTER
-* Adguard : to block ads
 * Collectd : to collect router metrics
 
 RASPI
+* Adguard : for DNS and to block ads
 * InfluxDB : to store router metrics
 * Prometheus for to display metrics
 
