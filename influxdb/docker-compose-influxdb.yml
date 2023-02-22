@@ -1,6 +1,10 @@
 services:
-  #containers we want to deploy in our application
-  grafana:
-    image: grafana/grafana:latest
+  influxdb:
+    image: influxdb:1.8.10
     ports:
-      - 3000:3000
+      - 8086:8086
+    volumes:
+      - ./influxdb/influxdbvolume:/var/lib/influxdb2
+      #add config to influxdb
+      #
+      #
