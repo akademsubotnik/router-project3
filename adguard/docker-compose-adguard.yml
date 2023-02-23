@@ -5,6 +5,7 @@ services:
       - 53:53 #DNS
       - 67:67 #DHCP Server
       - 3009:3000 #webport
+      - 8080:80 #webport
       - 853:853 #DNS over TLS
       - 5443:5443 #DNSCRYPT
     volumes:
