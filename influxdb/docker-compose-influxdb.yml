@@ -5,6 +5,4 @@ services:
       - 8086:8086
     volumes:
       - ./influxdb/influxdbvolume:/var/lib/influxdb2
-      #add config to influxdb
-      #
-      #
+      - ./config.yml:/etc/influxdb2/config.yml
