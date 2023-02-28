@@ -18,3 +18,4 @@
 *      collectd : 25826/udp
 *      
 Dockerize influxdb
+Use docker services? + only one docker compose file?
