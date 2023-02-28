@@ -9,3 +9,4 @@ services:
       - ./docker/influxdb/types.db:/usr/share/collectd/types.db:ro
         #- ./docker/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf
         #influxdb.conf causes a problem with types.db need to understand how to configure influxdb.conf
+        #currently not running influxdb in a container : TODO!
