@@ -1,6 +1,7 @@
 services:
   adguard:
     image: adguard/adguardhome:latest
+    restart: always
     ports:
       - 53:53 #DNS
       - 67:67 #DHCP Server
