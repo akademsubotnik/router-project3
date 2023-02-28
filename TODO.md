@@ -17,3 +17,4 @@
           -p 5443:5443/tcp -p 5443:5443/udp: add if you are going to run AdGuard Home as a DNSCrypt server.
 *      collectd : 25826/udp
 *      
+Dockerize influxdb
