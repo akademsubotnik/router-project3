@@ -1,6 +1,7 @@
 services:
   influxdb:
     image: influxdb:1.8.10
+    restart: always
     ports:
       - 8086:8086 #expose data on port 8086
       - 25826:25826 #read data from collectd source on port 25826
