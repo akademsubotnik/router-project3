@@ -1,7 +1,0 @@
-services:
-  #containers we want to deploy in our application
-  grafana:
-    image: grafana/grafana:latest
-    restart: always
-    ports:
-      - 3000:3000
