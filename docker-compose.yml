@@ -7,7 +7,7 @@ services:
       - 53:53 #DNS
       - 67:67 #DHCP Server
       - 8080:80 #webport
-      - 3009:3000 #webport
+      - 3000:3000 #webport
       - 853:853 #DNS over TLS
       - 5443:5443 #DNSCRYPT
     volumes:
@@ -18,8 +18,10 @@ services:
   grafana:
     image: grafana/grafana:latest
     restart: always
+    environment:
+      - GF_SERVER_HTTP_PORT=3005
     ports:
-      - 3000:3000
+      - 3005:3005
     deploy:
       replicas: 1
   influxdb:
@@ -35,4 +37,3 @@ services:
         #influxdb.conf causes a problem with types.db need to understand how to configure influxdb.conf
     deploy:
       replicas: 0
-      
