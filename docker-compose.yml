@@ -40,6 +40,7 @@ services:
       
       
       #Optional
+        #https://github.com/grafana/loki/issues/974
         #If on x86_64, to mirror docker logs to grafana - loki data source
         #loki-docker-driver:
         #image: grafana/loki-docker-driver:main-28d845d
