@@ -37,3 +37,12 @@ services:
         #influxdb.conf causes a problem with types.db need to understand how to configure influxdb.conf
     deploy:
       replicas: 0
+      
+      
+      #MISC
+        #If on x86_64, to mirror docker logs to grafana - loki data source
+        #loki-docker-driver:
+        #image: grafana/loki-docker-driver:main-28d845d
+        #restart: always
+        #deploy:
+        #replicas: 1
