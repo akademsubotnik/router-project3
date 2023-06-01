@@ -1,20 +1,21 @@
 version: '3.5'
 services:
-  adguard:
-    image: adguard/adguardhome:latest
-    restart: always
-    ports:
-      - 53:53 #DNS
-      - 67:67 #DHCP Server
-      - 8080:80 #webport
-      - 3000:3000 #webport
-      - 853:853 #DNS over TLS
-      - 5443:5443 #DNSCRYPT
-    volumes:
-      - ./adguard/workdir:/opt/adguardhome/work
-      - ./adguard/confdif:/opt/adguardhome/conf
-    deploy:
-      replicas: 1
+  #adguard is deployed directly to router; faster
+  #adguard:
+  #  image: adguard/adguardhome:latest
+  #  restart: always
+  #  ports:
+  #    - 53:53 #DNS
+  #    - 67:67 #DHCP Server
+  #    - 8080:80 #webport
+  #    - 3000:3000 #webport
+  #    - 853:853 #DNS over TLS
+  #    - 5443:5443 #DNSCRYPT
+  #  volumes:
+  #    - ./adguard/workdir:/opt/adguardhome/work
+  #    - ./adguard/confdif:/opt/adguardhome/conf
+  #  deploy:
+  #    replicas: 1
   grafana:
     image: grafana/grafana:latest
     restart: always
