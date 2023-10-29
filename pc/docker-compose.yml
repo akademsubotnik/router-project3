@@ -1,5 +1,18 @@
-version: '3.5'
+version: "3"
 services:
+  adguardhome:
+    image: adguard/adguardhome
+    ports:
+      - 5353:5353/tcp
+      - 5353:5353/udp
+      - 3000:3000/tcp
+      - 8080:8080/tcp
+    volumes:
+      - ./workdir:/opt/adguardhome/work
+      - ./confdir:/opt/adguardhome/conf
+    restart: unless-stopped
+    deploy:
+      replicas: 1
   grafana:
     image: grafana/grafana:latest
     restart: always
@@ -8,7 +21,9 @@ services:
     ports:
       - 3005:3005
     deploy:
-      replicas: 1
+      replicas: 0
+      
+  #influx i think is for another non adguard related service    
   influxdb:
     image: influxdb:1.8.10
     restart: always
@@ -22,30 +37,3 @@ services:
         #influxdb.conf causes a problem with types.db need to understand how to configure influxdb.conf
     deploy:
       replicas: 0
-      
-
-
- # loki:
-    #image: grafana/loki:2.4.1
-   # container_name: loki
-   # restart: always
-    #ports:
-   #   - 3100:3100
-    #expose:
-   #   - 3100
-   # command: -config.file=/etc/loki/local-config.yaml
-    #networks:
-     # - internal
- #   deploy:
-   #   replicas: 0
-
-      
-      
-      #Optional
-        #https://github.com/grafana/loki/issues/974
-        #If on x86_64, to mirror docker logs to grafana - loki data source
-        #loki-docker-driver:
-        #image: grafana/loki-docker-driver:main-28d845d
-        #restart: always
-        #deploy:
-        #replicas: 1
