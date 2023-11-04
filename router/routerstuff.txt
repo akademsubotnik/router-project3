@@ -1,0 +1,27 @@
+We are following : https://balagetech.com/monitor-network-traffic-openwrt-syslog-ng/ in order to have connection information sent from router to syslog-ng server.
+
+1. First you have to install ulogd and some of its modules. You can do this either in LuCI or in the command line.
+      root@openwrt:~# opkg update && opkg install ulogd ulogd-mod-nfct ulogd-mod-syslog ulogd-mod-extra
+2. The configuration of ulogd uses an INI style syntax. Two sections will be important for us, [global] and [ct1].
+In [global] section after the list of plugins there will be presets of stacks. Stacks are a list of plugins and they work like commands piped together. There are input plugins, filter plugins and output plugins.
+3. Look for the comment below. We are going to adjust the stack belonging to that comment like this.
+      # this is a stack for flow-based logging via LOGEMU
+      stack=ct1:NFCT,ip2str1:IP2STR,print1:PRINTFLOW,sys1:SYSLOG
+4. Look for the section called [ct1]. We are adding a new configuration element called hash_enable. Disabling hashes makes ulogd to log both NEW and DESTROY events separately. Otherwise it would only log DESTROY events. Although DESTROY contains everything we need the NEW events as well because of their timestamps, because we will make use of them for building session metadata.
+      [ct1]
+      hash_enable=0
+5. You can do a manual check of the configuration by starting ulogd manually.
+      root@openwrt:~# ulogd -v
+      Mon Mar 11 15:42:51 2019 <5> ulogd.c:843 building new pluginstance stack: 'ct1:NFCT,ip2str1:IP2STR,print1:PRINTFLOW,sys1:SYSLOG'
+      Mon Mar 11 15:42:51 2019 <5> ulogd_inpflow_NFCT.c:1399 NFCT plugin working in event mode
+6. The last step is to enable the service and start it.
+      root@openwrt:~# /etc/init.d/ulogd enable
+      root@openwrt:~# /etc/init.d/ulogd start
+That is all you have to do to make OpenWRT send its connection tracking events to syslog-ng.
+
+
+NOTE: Update: Note for general Linux users. I found that netfilter accounting is usually disabled in kernels, especially on OpenSUSE Leap. This will result that PKTS and BYTES will always be 0. To overcome this one must enable accounting by executing the following command.
+      # runtime only
+      root@opensuse:~# echo "1"> /proc/sys/net/netfilter/nf_conntrack_acct
+      # make it permanent across system reboots
+      root@opensuse:~# echo 'net.netfilter.nf_conntrack_acct=1' > /etc/sysctl.d/100-custom.conf
