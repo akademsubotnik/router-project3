@@ -1,6 +1,5 @@
-I'm using alot of code/ideas from https://github.com/benisai/Openwrt-Monitoring
+I'm using alot of code/ideas from https://github.com/benisai/Openwrt-Monitoring and https://balagetech.com/monitor-network-traffic-openwrt-syslog-ng/
 
-A project that collects adguard metrics on your network and populates them to grafana.
 How to :
 1) Install Openwrt on your router (recommend 1GB+ in RAM, 32GB+ in storage space (see openwrt exroot to use a usb drive to hold opkg packages)
 2) Create a docker swarm cluster and use docker stacks, so that you don't need to redeploy the compose file if there is a problem with one service, services are modular
